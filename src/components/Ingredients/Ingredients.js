@@ -48,7 +48,7 @@ const Ingredients = () => {
 
   const addIngredientHandler = useCallback(ingredient => {
     sendRequest(
-      'hhttps://reacthooks-ddcc5.firebaseio.com/ingredients.json',
+      'https://reacthooks-ddcc5.firebaseio.com/ingredients.json',
       'POST',
       JSON.stringify(ingredient),
       ingredient,
