@@ -1,10 +1,12 @@
-import React, { useReducer, useEffect, useCallback, useMemo } from 'react';
 
+import React, { useReducer, useEffect, useCallback, useMemo } from 'react';
 import IngredientForm from './IngredientForm';
 import IngredientList from './IngredientList';
 import ErrorModal from '../UI/ErrorModal';
 import Search from './Search';
 import useHttp from '../../hooks/http';
+require('dotenv').config()
+
 
 const ingredientReducer = (currentIngredients, action) => {
   switch (action.type) {
@@ -48,7 +50,7 @@ const Ingredients = () => {
 
   const addIngredientHandler = useCallback(ingredient => {
     sendRequest(
-      'https://reacthooks-ddcc5.firebaseio.com/ingredients.json',
+      `${process.env.REACT_APP_BASE_URL}ingredients.json`,
       'POST',
       JSON.stringify(ingredient),
       ingredient,
@@ -59,7 +61,7 @@ const Ingredients = () => {
   const removeIngredientHandler = useCallback(
     ingredientId => {
       sendRequest(
-        `https://reacthooks-ddcc5.firebaseio.com/ingredients/${ingredientId}.json`,
+        `${process.env.REACT_APP_BASE_URL}ingredients/${ingredientId}.json`,
         'DELETE',
         null,
         ingredientId,

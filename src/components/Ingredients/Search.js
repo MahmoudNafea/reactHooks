@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-
 import Card from '../UI/Card';
 import ErrorModal from '../UI/ErrorModal';
 import useHttp from '../../hooks/http';
 import './Search.css';
+require('dotenv').config()
+
 
 const Search = React.memo(props => {
   const { onLoadIngredients } = props;
@@ -19,7 +20,7 @@ const Search = React.memo(props => {
             ? ''
             : `?orderBy="title"&equalTo="${enteredFilter}"`;
         sendRequest(
-          'https://reacthooks-ddcc5.firebaseio.com/ingredients.json' + query,
+          `${process.env.REACT_APP_BASE_URL}ingredients.json` + query,
           'GET'
         );
       }
